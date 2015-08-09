@@ -89,6 +89,21 @@ num_iters = 400;
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
+%More
+alpha_1 = 0.5;
+theta_1 = zeros(3, 1);
+[theta_1, J_history_1] = gradientDescentMulti(X, y, theta_1, alpha_1, num_iters);
+
+alpha_11 = 1;
+theta_11 = zeros(3, 1);
+[theta_11, J_history_11] = gradientDescentMulti(X, y, theta_11, alpha_11, num_iters);
+
+plot(1:50, J_history(1:50), 'b');
+hold on;
+plot(1:50, J_history_1(1:50), 'r');
+hold on;
+plot(1:50, J_history_11(1:50), 'k');
+
 % Plot the convergence graph
 figure;
 plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
@@ -105,7 +120,9 @@ fprintf('\n');
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
 price = 0; % You should change this
-
+x2 = (1650 - mu(1)) / sigma(1);
+x3 = (3 - mu(2)) / sigma(2);
+price = [1 x2 x3] * theta;
 
 % ============================================================
 
@@ -150,7 +167,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 price = 0; % You should change this
-
+price = [1 x2 x3] * theta;
 
 % ============================================================
 

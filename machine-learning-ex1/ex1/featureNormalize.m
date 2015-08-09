@@ -40,9 +40,10 @@ len = length(mu);
 
 for i = 1 : len
     X_norm(:, i) = X_norm(:, i) - mu(i);
-    X_norm(:, i) = X_norm(:, i) ./ std(i);
+    X_norm(:, i) = X_norm(:, i) ./ sigma(i);
+
 end
-fprintf('%f', mu(1));
+%fprintf('%f', mu(1));
 % ============================================================
 
 end
