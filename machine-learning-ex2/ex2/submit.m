@@ -1,5 +1,5 @@
 function submit()
-  addpath('./lib');
+  addpath('/Users/sanvertarmur/Desktop/DEV/Online Courses/COURSERA/ML/machine-learning-ex2/ex2/lib');
 
   conf.assignmentSlug = 'logistic-regression';
   conf.itemName = 'Logistic Regression';
