@@ -10,6 +10,7 @@ m = length(y); % number of training examples
 % You need to return the following variables correctly 
 J = 0;
 grad = zeros(size(theta));
+theta_len = length(theta);
 
 % ====================== YOUR CODE HERE ======================
 % Instructions: Compute the cost of a particular choice of theta.
@@ -20,28 +21,38 @@ grad = zeros(size(theta));
 % Note: grad should have the same dimensions as theta
 %
 
-%{
 for i = 1 : m
    
   s = sigmoid((X(i, :) * theta));
-  J = J - (y(i) * log(s)) - ((1 - y(i)) * log(1 - s));
+  l_s = log(single(s));
+  l_s1 = log(single(1 - s));
+  J = J - (y(i) * l_s) - ((1 - y(i)) * l_s1);
   
 end;
 
 J = J / m;
-%}
-% Find the function J value
-s = sigmoid(X * theta);
-J = J - (y' * log(s)) - ((ones(size(y)) - y)' * log(ones(size(s)) - s));
-J = sum(J) / m;
 
-%Find the gradients
-for j_1 = 1 : length(theta)
+%{
+s = sigmoid((X * theta) .* -1);
+J = J - (y' * log(s)) - ((ones(size(y)) - y)' * log(ones(size(s)) - s));
+
+J = sum(J) / m;
+%}
+for j_1 = 1 : theta_len
     
-  grad_j = (sigmoid((X * theta)) - y)' * X(:, j_1);
+  grad_j = (sigmoid((X * theta) .* -1) - y)' * X(:, j_1);
+
   grad(j_1) = sum(grad_j) / m;
-  
+  %{
+  for i_1 = 1 : m
+    %s = sigmoid(-1 * (X(i, :) * theta));
+    %grad(j) = grad(j) + ((-1 * y(i) * log(s)) - ((1 - y(i)) * log(1 - s))) * X(i, j);
+    grad(j_1) = grad(j_1) + ((sigmoid((X(i_1, :) * theta) .* -1) - y(i_1)) * X(i_1, j_1));
+  end;
+  grad(j_1) = grad(j_1) / m;
+  %}
 end;
+
 
 % =============================================================
 
