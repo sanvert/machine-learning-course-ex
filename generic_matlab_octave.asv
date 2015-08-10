@@ -123,8 +123,3 @@ while true,
 end;
 v;
 
-squareThisNumber(5)
-
-%Octave search path add new path
-addpath(dir)
-
