@@ -18,6 +18,22 @@ grad = zeros(size(theta));
 %               derivatives of the cost w.r.t. each parameter in theta
 
 
+% Find the function J value
+%Leave out the theta(0) values as to regularize
+s = sigmoid(X * theta);
+J = J - (y' * log(s)) - ((ones(size(y)) - y)' * log(ones(size(s)) - s));
+J = (sum(J) / m) + (lambda * sum(theta(2:end, :) .^ 2) / (2 * m));
+
+%Find the gradients
+grad_j = (sigmoid((X * theta)) - y)' * X(:, 1);
+grad(1) = (sum(grad_j) / m);
+
+for j_1 = 2 : length(theta)
+    
+  grad_j = (sigmoid((X * theta)) - y)' * X(:, j_1);
+  grad(j_1) = (sum(grad_j) / m) + (lambda * theta(j_1) / m);
+  
+end;
 
 
 
