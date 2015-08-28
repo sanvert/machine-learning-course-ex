@@ -30,13 +30,13 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
+Q = X * all_theta';
 
-
-
-
-
+% Get max row value and max row idx of all rows in a matrix.
+[maxValue p] = max (Q, [], 2);
 
 % =========================================================================
 
 
 end
+

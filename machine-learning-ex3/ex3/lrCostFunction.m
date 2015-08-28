@@ -48,7 +48,7 @@ grad_regularization = ((theta .* lambda) ./ m);
 grad = (grad ./ m) - grad_regularization';
 % =============================================================
 
-grad = flipud(grad(:));
-%grad = grad(:);
+%grad = flipud(grad(:));
+grad = grad(:);
 
 end
