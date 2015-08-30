@@ -26,7 +26,7 @@ J = (sum(J) / m) + (lambda * sum(theta(2:end, :) .^ 2) / (2 * m));
 
 %Find the gradients
 grad_j = (sigmoid((X * theta)) - y)' * X(:, 1);
-grad(1) = (sum(grad_j) / m);
+grad(1) = (sum(grad_j) / m); % Because theta0 is different calculate it seperately
 
 for j_1 = 2 : length(theta)
     

@@ -43,9 +43,11 @@ J = (sum(J) / m) + (lambda * sum(theta(2:end, :) .^ 2) / (2 * m));
 grad = (s - y)' * X;
 
 grad_regularization = ((theta .* lambda) ./ m);
+% Because theta0 is not need to be regularized set first vector value to zero
+grad_regularization(1) = 0;
 %grad = sum(grad, 1); % Get sum of first dimension which is row, 2 - column
 
-grad = (grad ./ m) - grad_regularization';
+grad = (grad ./ m) + grad_regularization';
 % =============================================================
 
 %grad = flipud(grad(:));
