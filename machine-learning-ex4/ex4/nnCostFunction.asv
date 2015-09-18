@@ -73,21 +73,14 @@ Z3 = Theta2 * A2';
 A3 = sigmoid(Z3); % which is h -> hypothesis function 
 
 check_vector = 1:10;
-y_check = [];
+y_check = []
 for idx = 1:size(y,1)
     y_check = [y_check; (check_vector == y(idx))];
 end;    
 
-% Because we have to compute one to one y and X values, we will make .* multiplication
-%J = J - (log(A3) .* y_check') - (log(ones(size(A3)) - A3) .* (ones(size(y_check')) - y_check'));
-J = J - (times(log(A3), y_check')) - (times((log(ones(size(A3)) - A3)), ((ones(size(y_check')) - y_check'))));
-
-Theta1U = Theta1(:, 2:end);
-
-Theta2U = Theta2(:, 2:end);
-
-J = (sum(sum(J)) / m) + (lambda * (sum(sum(Theta1U .^ 2)) + sum(sum(Theta2U .^ 2))) / (2 * m));
+J = J - (y' * log(A3)) - ((ones(size(y)) - y)' * log(ones(size(s)) - s));
 %J = (sum(J) / m) + (lambda * sum(theta(2:end, :) .^ 2) / (2 * m));
+
 
 
 
